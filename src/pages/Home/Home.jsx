@@ -11,7 +11,7 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!moviesList) return;
+    if (moviesList.length > 0) return;
     const fetchMovies = async () => {
       try {
         setIsLoading(true);

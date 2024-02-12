@@ -29,7 +29,7 @@ const Home = () => {
     };
 
     fetchMovies();
-  }, []);
+  });
 
   return (
     <div>

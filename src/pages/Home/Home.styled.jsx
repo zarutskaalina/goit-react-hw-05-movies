@@ -5,7 +5,8 @@ export const LinkList = styled(Link)`
   text-decoration: none;
   color: black;
 
-  &:visited {
+  &:hover,
+  &:focus {
     color: blue;
   }
 `;

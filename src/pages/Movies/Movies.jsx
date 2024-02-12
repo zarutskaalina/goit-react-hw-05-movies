@@ -1,8 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Loader } from 'components/Loader';
-import { Link } from 'react-router-dom';
+import { Loader } from 'components/Loader/Loader';
+import { LinkList } from 'pages/Home/Home.styled';
+import { SearchForm, InputFile, Button } from './Movies.styled';
 
 const Movies = () => {
   const [searhParams, setSearhParams] = useSearchParams();
@@ -20,11 +21,9 @@ const Movies = () => {
     // встановлюємо значення пол в параметр
     setSearhParams({ query: searchValue });
   };
-  // console.log(queryValue);
 
   useEffect(() => {
     if (!queryValue) return;
-    console.log(queryValue);
     const fetchSearchedMovies = async () => {
       try {
         setIsLoading(true);
@@ -44,21 +43,26 @@ const Movies = () => {
 
   return (
     <div>
-      <form onSubmit={onFormSubmit}>
+      <SearchForm onSubmit={onFormSubmit}>
         <label>
-          <input type="text" name="searchKey" required />
+          <InputFile
+            type="text"
+            name="searchKey"
+            required
+            placeholder="Search"
+          />
         </label>
-        <button type="submit">Search</button>
-      </form>
+        <Button type="submit">Search</Button>
+      </SearchForm>
       <ul>
         {isLoading && <Loader />}
         {error != null && <p>Sorry, an error occurred {error}!</p>}
         {searchedMovie !== null &&
           searchedMovie.map(movie => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}/`}>
+              <LinkList to={`/movies/${movie.id}/`}>
                 <p>{movie.title || movie.name}</p>
-              </Link>
+              </LinkList>
             </li>
           ))}
       </ul>

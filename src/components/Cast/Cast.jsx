@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Loader } from 'components/Loader';
+import { Loader } from 'components/Loader/Loader';
 
 const Cast = ({ movieId }) => {
   const [castList, setCastList] = useState([]);
@@ -25,8 +25,6 @@ const Cast = ({ movieId }) => {
 
     fetchCast();
   }, [movieId]);
-
-  console.log(movieId);
 
   return (
     <div>

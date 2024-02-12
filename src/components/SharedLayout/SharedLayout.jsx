@@ -3,7 +3,7 @@ import { Container } from './SharedLayout.styled';
 import { Header } from './SharedLayout.styled';
 import { CustomLink } from './SharedLayout.styled';
 import { Suspense } from 'react';
-import { Loader } from 'components/Loader';
+import { Loader } from 'components/Loader/Loader';
 
 export const SharedLayout = () => {
   return (

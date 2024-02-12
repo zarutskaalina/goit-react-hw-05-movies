@@ -2,12 +2,13 @@ import { Suspense, lazy, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Route, Routes, Link } from 'react-router-dom';
-import { CustomLink } from './SharedLayout/SharedLayout.styled';
+import { CustomLink } from '../SharedLayout/SharedLayout.styled';
 import { useLocation } from 'react-router-dom';
-import { Loader } from './Loader';
+import { Loader } from '../Loader/Loader';
+import { MovieDetailsContainer, Button } from './MovieDetails.styled';
 
-const Cast = lazy(() => import('components/Cast'));
-const Reviews = lazy(() => import('components/Reviews'));
+const Cast = lazy(() => import('components/Cast/Cast'));
+const Reviews = lazy(() => import('components/Reviews/Reviews'));
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -25,7 +26,6 @@ const MovieDetails = () => {
           `https://api.themoviedb.org/3/movie/${movieId}?language=en-US&api_key=a98bc7353de84626309d54158846e0b4`
         );
         setMoviesDetails(data);
-        console.log(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -42,31 +42,31 @@ const MovieDetails = () => {
   return (
     <div>
       <Link to={backLinkHref}>
-        <button type="button">Go Back</button>
+        <Button type="button">Go Back</Button>
       </Link>
 
       {isLoading && <Loader />}
       {error != null && <p>Sorry, an error occurred {error}!</p>}
 
-      <div>
+      <MovieDetailsContainer>
         <img
           src={`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`}
           alt={movieDetails.title}
         />
-      </div>
 
-      <div>
-        <h2>
-          {movieDetails.title} ({year})
-        </h2>
-        <h3>Overview</h3>
-        <p>{movieDetails.overview}</p>
-        <h4>Genres</h4>
-        {movieDetails.genres &&
-          movieDetails.genres.map(genre => (
-            <li key={genre.id}>{genre.name}</li>
-          ))}
-      </div>
+        <div>
+          <h2>
+            {movieDetails.title} ({year})
+          </h2>
+          <h3>Overview</h3>
+          <p>{movieDetails.overview}</p>
+          <h4>Genres</h4>
+          {movieDetails.genres &&
+            movieDetails.genres.map(genre => (
+              <li key={genre.id}>{genre.name}</li>
+            ))}
+        </div>
+      </MovieDetailsContainer>
 
       <div>
         <p>Additional information</p>

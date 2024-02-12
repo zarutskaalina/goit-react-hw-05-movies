@@ -1,8 +1,9 @@
 import { Oval } from 'react-loader-spinner';
+import { LoaderContainer } from './Loader.styled';
 
 export const Loader = () => {
   return (
-    <div>
+    <LoaderContainer>
       <Oval
         visible={true}
         height="80"
@@ -13,6 +14,6 @@ export const Loader = () => {
         wrapperClass=""
       />
       ;
-    </div>
+    </LoaderContainer>
   );
 };

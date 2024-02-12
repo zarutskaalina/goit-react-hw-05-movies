@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Loader } from 'components/Loader';
+import { Loader } from 'components/Loader/Loader';
 import { TrendingMovie } from './Home.styled';
 import { TitleHomePage } from './Home.styled';
 import { CustomLink } from 'components/SharedLayout/SharedLayout.styled';
@@ -30,8 +30,6 @@ const Home = () => {
 
     fetchMovies();
   }, []);
-
-  console.log(moviesList);
 
   return (
     <div>

@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Loader } from './Loader';
+import { Loader } from '../Loader/Loader';
 
 const Reviews = ({ movieId }) => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  console.log(movieId);
 
   useEffect(() => {
     const fetchReviews = async () => {
